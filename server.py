@@ -1,4 +1,4 @@
-from runpod import serverless
+import runpod
 from fastapi import FastAPI
 import uvicorn
 
@@ -10,15 +10,12 @@ def root():
 
 def handler(event):
     """
-    This function is required by RunPod.
-    It will be invoked when a serverless job runs.
+    Required by RunPod
     """
-    return {"message": "SadTalker API handler is active.", "event": event}
+    input_data = event.get("input", {})
+    # 這裡先用簡單輸出測試，確保 handler 有執行
+    result = {"echo": input_data, "message": "SadTalker API handler is working"}
+    return result
 
-# Tell RunPod which function is the entrypoint
-if __name__ == "__main__":
-    # local run
-    uvicorn.run(app, host="0.0.0.0", port=8000)
-
-# RunPod entry
-serverless.start({"handler": handler})
+# ✅ RunPod entry（一定要在最外層）
+runpod.serverless.start({"handler": handler})
