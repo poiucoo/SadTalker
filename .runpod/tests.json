@@ -1,0 +1,13 @@
+{
+  "tests": [
+    {
+      "name": "basic_test",
+      "input": {
+        "text": "hello world",
+        "audio_url": "https://example.com/sample.wav",
+        "image_url": "https://example.com/face.jpg"
+      },
+      "timeout": 60000
+    }
+  ]
+}
