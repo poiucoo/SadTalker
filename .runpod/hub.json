@@ -1,0 +1,21 @@
+{
+  "title": "SadTalker",
+  "description": "Realistic 3D motion coefficients for stylized audio-driven single image talking head generation.",
+  "type": "serverless",
+  "category": "video",
+  "iconUrl": "https://raw.githubusercontent.com/OpenTalker/SadTalker/main/assets/logo.png",
+  "config": {
+    "runtime": "GPU",
+    "containerDiskInGb": 20,
+    "presets": [
+      {
+        "id": "default",
+        "name": "Default GPU preset",
+        "gpu": "A10G",
+        "cpus": 4,
+        "memory": 16,
+        "spot": false
+      }
+    ]
+  }
+}
