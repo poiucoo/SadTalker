@@ -29,5 +29,8 @@ COPY . .
 # 🌐 開啟伺服器端口 (RunPod Serverless 通常使用 8000)
 EXPOSE 8000
 
+# 🕓 增加映像推送超時時間（避免 build 時 registry timeout）
+ENV DOCKER_UPLOAD_TIMEOUT=600
+
 # 🚀 啟動主伺服器
 CMD ["python", "server.py"]
