@@ -19,6 +19,6 @@ def handler(event):
 if __name__ == "__main__":
     # local run
     uvicorn.run(app, host="0.0.0.0", port=8000)
-else:
+
     # RunPod entry
     serverless.start({"handler": handler})
