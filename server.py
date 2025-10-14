@@ -8,14 +8,21 @@ app = FastAPI()
 def root():
     return {"status": "running"}
 
+# RunPod 的 handler：每次 serverless job 執行時呼叫
 def handler(event):
     """
-    Required by RunPod
+    RunPod serverless handler function.
+    Replace this with your own inference logic.
     """
     input_data = event.get("input", {})
-    # 這裡先用簡單輸出測試，確保 handler 有執行
-    result = {"echo": input_data, "message": "SadTalker API handler is working"}
-    return result
+    return {
+        "message": "SadTalker API handler is active.",
+        "input_received": input_data
+    }
 
-# ✅ RunPod entry（一定要在最外層）
+# 本地測試時使用 uvicorn
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+
+# RunPod serverless 啟動入口
 runpod.serverless.start({"handler": handler})
