@@ -4,11 +4,11 @@ FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
 # 設定工作目錄
 WORKDIR /app
 
-# ⚙️ 避免 tzdata 在安裝時要求互動輸入 (這是卡住的原因)
+# ⚙️ 避免 tzdata 在安裝時要求互動輸入
 ENV DEBIAN_FRONTEND=noninteractive
 
 # 安裝系統依賴
-# 這些套件是 SadTalker、facexlib、gfpgan、opencv 等需要的
+# 新增 build-essential 與 python3-dev 以修正 numba 編譯錯誤
 RUN apt-get update && apt-get install -y \
     git \
     ffmpeg \
@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y \
     libxext6 \
     libxrender-dev \
     libgl1 \
+    build-essential \
+    python3-dev \
  && rm -rf /var/lib/apt/lists/*
 
 # 🧩 複製 requirements.txt 並安裝 Python 依賴
