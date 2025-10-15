@@ -8,14 +8,14 @@ WORKDIR /app
 ENV DEBIAN_FRONTEND=noninteractive
 
 # 安裝系統依賴
-# 新增 build-essential 與 python3-dev 以修正 numba 編譯錯誤
+# 修正 libxrender-dev / libgl1 無法安裝的問題
 RUN apt-get update && apt-get install -y \
     git \
     ffmpeg \
     libsm6 \
     libxext6 \
-    libxrender-dev \
-    libgl1 \
+    libxrender1 \
+    libgl1-mesa-glx \
     build-essential \
     python3-dev \
  && rm -rf /var/lib/apt/lists/*
